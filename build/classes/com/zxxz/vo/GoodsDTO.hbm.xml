@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   <!-- 所在路径以及数据库表 -->
+   <class name="com.zxxz.vo.GoodsDTO" table="goods">
+        <!-- 主键以及主键生成策略 -->
+        <id name="goodsID" column="goodsID">
+            <generator class="native"/>
+        </id> 
+        <property name="goodsName" column="goodsName"/>
+        <property name="goodsPrice" column="goodsPrice"/>
+        <!-- 多对多关系 -->
+        <set name="orderlist" table="order_goods" cascade="save-update">
+           <key column="goodsID"/>
+           <many-to-many class="com.zxxz.vo.Order1DTO" column="orderID">
+           </many-to-many>
+        </set>
+   </class>
+</hibernate-mapping>
